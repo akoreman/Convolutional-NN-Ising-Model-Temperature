@@ -19,354 +19,301 @@
 
 \setlength{\parindent}{0 cm}
 
-\title{
- Studying the Phase Transition in the Ferromagnetic Square-Lattice 2D Ising Model using Monte Carlo Algorithms and Convolutional Neural Networks  \\
-  \Large Computational Physics Project 2
-}
-
-\author{Tim Koreman (s2418541)}
-
-
 \begin{document}
 
-\maketitle
+\begin{center}
+\huge Convolutional Neural Networks \\
+\Large Assignment 2 Part 1
+\end{center}
 
-
-\abstract{Monte Carlo algorithms can be used to study the Ising model. In this report we look at the phase transition in the ferromagnetic zero field
- 2D square lattice Ising model by calculating the magnetisation per spin, the specific heat per spin and the susceptibility per spin at a range of temperatures. For those observables the behaviour around the critical temperature has a distinct shape that agrees with results from literature \cite{thijssen}. When we look at the effect the lattice size on those shapes we see that they become sharper and more defined for bigger lattice sizes which agrees with the expectation that bigger lattice sizes approach the thermodynamics limit.
+Convolutional Neural Networks (CNN) are a class of deep neural networks suitable for use on image data. CNNs use a layer of convolutional filters to reduce the dimensionality of the image data before feeding it to fully connected layers to classify the images. The weights in these filters aswell as the weights in the fully connected layers are being updated. We look at classifying the MNIST dataset using a CNN. Parts of the code used were adapted from \cite{CNN}. This code uses 2 convolutional layers, a max pooling layer and 2 fully connected layers. 2 dropout layers are used to reduce over fitting.
 \\
 \\
-A second method used to look at the phase transition is by using a Convolutional Neural Network. Using such a  class of a Artificial Neural Network a value for the critical temperature of $T_C = 2.23(5)$ was found which agrees with the analytical result.
-}
+The main parameters are the number of epochs, the size of the batches used to update the weights, the size and stride of the kernels used in the convolutional layers and the size of the pooling layers. Using the parameters as used in \cite{CNN} we achieve an accuracy of 99\% on the test set which is a big improvement over the accuracy achieved by the single layer perceptron. In order to study what varying the parameters does the model we look at a simplified network consisting of only 1 convolutional layer, 1 pooling layer and 1 fully connected layer.
+\\
+\\
+When we run this simplified network using the same parameters as the complete network we get an accuracy of 98.1\%. In this run the batch size was 128 (figure \ref{fig:AccCNN128}), when we look at a smaller batch size of 1 or a bigger batch size of 1024 we can look at what happens to the accuracy of the model (figure \ref{fig:AccCNN}). We can see that for the smaller batch size the accuracy goes down and the convergence becomes more noisy. For the bigger batch size we see the convergence becomes slower. The smaller the batch size the longer the program takes to run.
+
+\begin{figure}[H] 
+\begin{subfigure}[b]{0.33\textwidth}
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{AccCNN1}
+\caption{Batch size 1.}
+\label{fig:AccCNN1}
+\end{figure}
+\end{subfigure}
+\begin{subfigure}[b]{0.33\textwidth}
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{AccCNN128}
+\caption{Batch size 128.}
+\label{fig:AccCNN128}
+\end{figure}
+\end{subfigure}
+\begin{subfigure}[b]{0.33\textwidth}
+\begin{figure}[H] 
+\includegraphics[width=\textwidth]{AccCNN1024}
+\caption{Batch size 1024.}
+\label{fig:AccCNN1024}
+\end{figure}
+\end{subfigure}
+\caption{The accuracy for the train and test set for each epoch for the simplified CNN network. Batch size as in subcaption.}
+\label{fig:AccCNN}
+\end{figure}
+
+\vfill
+
+\begin{thebibliography}{99}
+
+\bibitem{CNN}
+Towards Datascience: Build your own convolutional neural network in 5 minutes, Rohith Gandi, \url{https://towardsdatascience.com/build-your-own-convolution-neural-network-in-5-mins-4217c2cf964f}, retrieved on 2019-04-10.
+
+\end{thebibliography}
+
+\newpage
+
+\begin{center}
+\huge Autoencoders \\
+\Large Assignment 2 Part 1
+\end{center}
+
+\setcounter{figure}{0}
+
+For many image processing problems we need to reduce the feature space of the images. One way to implement that is with the use of autoencoders. First we use a network to encode the images and then we use a network to decode these images with a lower feature space.
+\\
+\\
+We look at using an autoencoder to reduce the feature size of the MNIST digits (figure \ref{fig:auto}). The code used for this was adapted from \cite{auto}. When we apply this autoencoder the resulting images are sparser than then input images so the feature space of the images is reduced. The cost of this reduction is that we lose some information which is visible in figure \ref{fig:auto} in the loss of clarity in the images.
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=\textwidth]{AutoEn}
+  \caption{The input and the output of the autoencoder. The loss of this autoencoder is 0.10 so we lose quite a lot of information.}
+  \label{fig:auto}
+\end{figure}
+
+\vfill
+
+\begin{thebibliography}{99}
+
+\bibitem{auto}
+The Keras Blog: Building Autoencoders in Keras, \url{https://blog.keras.io/building-autoencoders-in-keras.html}, retrieved on 2019-04-10.
+
+\end{thebibliography}
+
+\newpage
+
+\begin{center}
+\huge Recurrent Neural Networks \\
+\Large Assignment 2 Part 1
+\end{center}
+
+\setcounter{figure}{0}
+
+Recurrent Neural Networks are a class of neural networks useful to study sequences of inputs. In order to gain some insight into RNN we look at performing addition using a RNN. The code to perform this task was adapted from \cite{RNN}. Just feeding a sum with the desired results does not necessarily result in a sequence to study using a RNN. Therefore we feed the RNN the sum symbol by symbol.
+\\
+\\
+First we generate a set of sequences describing our addition problem, for example ['3','2','+','7'] with output ['3','9']. We train the RNN on these sequences and then test its accuracy. After 10 epochs of training we achieve an accuracy of 99.5 \%.
+
+\begin{figure}[H]
+  \centering
+    \includegraphics[width=0.7\textwidth]{AccuracyRNN}
+  \caption{Accuracy vs. the number of epochs for the addition problem.}
+  \label{fig:AccuracyRNN}
+\end{figure}
+
+
+\vfill
+
+\begin{thebibliography}{99}
+
+\bibitem{RNN}
+Machine Learning Mastery: Learn to Add Numbers with an Encoder-Decoder LSTM Recurrent Neural Network, \url{https://machinelearningmastery.com/learn-add-numbers-seq2seq-recurrent-neural-networks/}, retrieved on 2019-04-12.
+
+\end{thebibliography}
+
+\newpage
+
+\begin{center}
+\huge Studying the Phase Transition in the 2D Square Lattice Zero Field Ising Model using a Convolutional Neural Network \\
+\Large Assignment 2 Part 2
+\end{center}
+
+\setcounter{figure}{0}
+
+\abstract{The 2D Ising model has a phase transition at a finite temperature $T_C$. The conventional way to study this phase transition is using Markov Chain Monte Carlo (MCMC) to simulate the model at a range of temperatures. In this report we try to use a Convolutional Neural Network to determine the critical temperature by classifying configurations at labelled temperatures generated by MCMC. From the weights of this classification we determined the critical temperature at $k_B T_C / J = 2.23(5)$ which agrees with the analytical results of $k_B T_C / J = \frac{2}{\ln(1 + \sqrt{2})} \simeq 2.2691 \dots$ \cite{onsager}.}
 
 
 \section{Introduction}
 
-Many thermodynamic systems demonstrate a phase transition along some order parameter. One of the simplest systems which demonstrate such a transition is the Ising model. This system consists of N spins with value $-1$ or $1$ arranged on some lattice and has a phase transition at some finite temperature. In this report we look at this phase transition by looking the average magnetisation, heat capacity per spin and the susceptibility per spin at a range of temperatures using Monte Carlo algorithms.
-\\
-\\
-Monte Carlo algorithms are the conventional method to computationally study the Ising model. In Recent years Artificial Neural Networks have become a popular method for data analysis. Using this method we try to find the critical temperature of the phase transition.
+In theoretical physics we study simplified models of nature. One of the widely used models in theoretical physics is the Ising model. This model has a phase transition at a finite value of the order parameter. The conventional way to study this phase transition is by simulating the Ising model using Monte Carlo algorithms to evolve the system from the initial values at a given temperature. It might be insightful to reverse this process (ie. determining the temperature given a final state of the system like a kind of thermometer). The Monte Carlo algorithms commonly used to study the Ising model are irreversible so those can not easily be used to study the reverse of the simulation.
 
+\section{Theoretical Background}
 
-\section{Theoretical Background} \label{sec:theo}
-
-\subsection{Ising Model}
-
-The Hamiltonian of the Ising model is given by
-
-\begin{align*}
-H = - J \sum_{\langle i,j\rangle} s_i s_j - H \sum_i s_i
-\end{align*}
-
-Where $J$ is a coupling constant, $s_i$ the spin value at site $i$, $\sum_{\langle ij\rangle}$ the sum over the nearest neighbours and $H$ the magnitude of an external magnetic field. In order to reduce the complexity of the phase transition we look at the zero field case where $H = 0$ so the Hamiltonian becomes
-
-\begin{align*}
-H = - J \sum_{\langle i,j\rangle} s_i s_j 
-\end{align*}
-
-where when $J > 0$ the systems favour ferromagnetism and when $J < 0$ anti ferromagnetism. The Ising model has a phase transition at a finite temperature. Analytically it can be found that the critical temperature is at $k_B T_C / J = \frac{2}{\ln(1 + \sqrt{2})} \simeq 2.2691 \dots $ \cite{onsager}.
-
-\subsection{Single flip Monte Carlo algorithms}
-
-In order to simulate the system at a given temperature we look at two single flip Monte Carlo algorithms, the metropolis algorithm and the heat bath algorithm. In the metropolis algorithm a random spin is flipped and the change in energy that flip would cause is evaluated. If this change is negative than it is accepted outright, if it is positive it is accepted with a probability $P$ given by
-
-\begin{align} \label{metropolis}
-P = \exp(-\beta \Delta H)
-\end{align}
-
-where $\beta = \frac{1}{k_B T}$ with $k_B$ the Boltzmann constant and $T$ the temperature and $\Delta H$ the change in energy. In the heat bath algorithm a random spin is flipped and it is accepted with a probability $P$ given by
+The 2D Ising model consist of spins arranged on a regular 2D lattice. These spins can have a value of $-1$ or $1$. These spins could represent the spin of atoms in a metal. The energy of this system is given by the Hamiltonian 
 
 \begin{align}
-P = \frac{1}{1 + \exp(\beta \Delta H)}
+H = -J  \sum_{\langle i,j \rangle} \sigma_i \sigma_j -  \mu h \sum_i \sigma_i
+\end{align}          
+
+where $J$ is the coupling constant between spins, $\sigma_i$ the spin at lattice site $i$, $\mu$ the coupling constant between the spins and the external field and $h$ the magnitude and the direction of the external magnetic field. The sum $\sum_{\langle i,j \rangle}$ goes over all the nearest neighbour pairs. In order to reduce the complexity of the phase transition we look at the Ising model without external field so we set $h = 0$ which results in the Hamiltonian
+
+\begin{align}
+H = -J  \sum_{\langle i,j \rangle} \sigma_i \sigma_j 
 \end{align} 
 
-where $\beta = \frac{1}{k_B T}$ with $k_B$ the Boltzmann constant and $T$ the temperature and $\Delta H$ the change in energy.
-\\
-\\
-In order to calculate observables from the system we first need to let it equilibrate. In order to evaluate the equilibration time we simulate the system and calculate the magnetisation every step. In this context we use a step size of N flips. When we look at the equilibration for the metropolis algorithm in figure \ref{fig:metro} we can see that after 20 steps the magnetisation fluctuates around the same value. When we do the same for the heat bath algorithm (see figure \ref{fig:heat}) we see that it takes almost 40 steps for the heat bath algorithm to reach equilibration. Therefore the metropolis algorithm is used for the calculation of the observables.
-
-\begin{figure}[H] 
-\begin{subfigure}[b]{0.5\textwidth}
-\begin{figure}[H]
-\includegraphics[width=\textwidth]{timeMC}
-\caption{Metropolis algorithm. \label{fig:metro}}
-\end{figure}
-\end{subfigure}
-\begin{subfigure}[b]{0.5\textwidth}
-\begin{figure}[H] 
-\includegraphics[width=\textwidth]{timeHeatbath}
-\caption{Heat bath algorithm. \label{fig:heat}}
-\end{figure}
-\end{subfigure}
-\caption{Magnetisation vs. the number of timesteps for a $32 \times 32$ lattice using the metropolis algorithm and the heat bath algorithm  at $\frac{k_B}{J} T = 3.6$. 1 step contains 1024 spin flips.} 
-\end{figure}
-
-
-\subsection{Observables}
-
-After the system has reached equilibration we can start to sample to system in order to calculate the observables. The system is sampled every time step, where 1 time step is defined as being N flip attempts. From these samples the magnetisation per spin $m$ defined by 
+The conventional way to computationally study the 2D Ising model is by using Markov Chain Monte Carlo (MCMC) algorithms. The MCMC algorithm commonly used is the Metropolis algorithm which works by choosing a random lattice site, flip that spin and calculate what that does to the total energy of the system. If the energy decreases accept the flip outright and when the energy increases accept it with the chance given by
 
 \begin{align}
-\langle m \rangle = \frac{1}{N} \langle \sum_i s_i\rangle
+P = e^{- \beta \Delta H}
 \end{align}
 
-where $\langle \dots \rangle$ is used to denote the ensemble average, $N$ the number of spins and $s_i$ the spin at site $i$ can be calculated. From this magnetisation the susceptibility per spin $\chi$ defined by
-
-\begin{align}
-\chi = \beta N \left( \langle m^2 \rangle - \langle m \rangle^2 \right)
-\end{align}
-
-where $\beta = \frac{1}{k_B T}$ with $k_B$ the Boltzmann constant and $T$ the temperature, $N$ the number of spins and $\langle m^2 \rangle - \langle m \rangle^2$ the variance of the magnetisation can be calculated. The third observable calculated is the specific heat per spin $c$ defined by
-
-\begin{align}
-c = \frac{k_B \beta^2}{N} \left( \langle E^2 \rangle - \langle E \rangle^2 \right)
-\end{align}
-
-where $\beta = \frac{1}{k_B T}$ with $k_B$ the Boltzmann constant and $T$ the temperature, $N$ the number of spins and $\langle E^2 \rangle - \langle E \rangle^2$ the variance of the energy.
-
-\subsection{Artificial Neural Networks}
-
-Artificial Neural Networks (ANN) are a method to study data loosely inspired by biological neurons. An ANN consists of a collection of connected nodes grouped in layers. Each of those nodes takes the input from (a part of) the previous layer, multiplies it by a set of weights $w$, applies an activation function to the result and feed that result to the next layer. In order to determine this set of weights the ANN is applied to a large dataset for which the desired outputs are known. In this process called training the ANN is repeatedly applied to this dataset, updating the weights each time until the accuracy reaches an equilibrium. Each of those runs over the dataset is often called an epoch.
-\\
-\\
-One of the simplest examples of an ANN is the single-layer perceptron. In such a system there are 2 layers, a input layer and a output layer. The input layer consists of a input vector $x_n$. Each node in the output layer takes that input vector and takes the dot product with its weight vector $w_n$. To the resulting scalar we apply the activation function. For this activation function there are many choices, e.g. the sigmoid function. 
-\\
-\\
-This simple class of a Neural Network already performs better at certain tasks such a pattern recognition in images then hand written code to solve those problems. A type of networks that is a bit more complex but more suited for image pattern recognition is the Convolutional Neural Network (CNN). Such a network starts with applying one or more convolutional layers before feeding it to a so called fully connected layer\footnote{Called fully connected because each node in the input layer is connected to each node in the following layer which is not the case for the CNN.} that resembles the single layer perceptron  described earlier.
-
-\begin{figure}[H]
-\centering
-%\includegraphics[width=0.7\textwidth]{CNNop}
-\todo[inline]{Sourced image removed.}
-\caption{Example of the operation of a single convolutional layer. Source: \cite{deep}. \label{fig:CNNop}}
-\end{figure}
-
-Such a convolutional layer uses a kernel with size $s \times s$ that moves across the image (figure \ref{fig:CNNop}). Each time this kernel is applied to the image from the previous layer it takes $s \times s$ values from the image from the previous layer, multiplies each value with a set of weights and apply an activation function to it. This result forms a part of the image for the next layer. This kernel moves across the image in steps with a size that is often called the stride of the kernel.
-\\
-\\
-These convolutional layers reduce the size of the image with each layer. When the size is reduced enough a fully connected layer is used for the final classification. How many layers of each type should be used is often more of an art than a science and is often determined using trial and error.
-\\
-\\
-This process, often used for image classification, can be used to study the Ising model. One way of studying the Ising model with a CNN could as a thermometer, ie. feed the CNN a labelled collection of equilibrated Ising lattices and let it determine the temperature at which they were generated. The final result from this process would be to find the value of the critical temperature from this process.\footnote{ Using more complicated ANNs more aspects of the Ising model such as the observables can be studied, see for example Torial \& Meiko 2016 \cite{IsingRBM}}
-
-
-\section{Methods} \label{sec:meth}
-
-\subsection{Metropolis simulation setup} \label{sec:simsetup}
-
-In order make the numerical values in the simulation more manageable we define dimensionless units given in table \ref{tab:natunits}.
-
-\begin{table}[H] 
-\centering
-\caption{Definition of the dimensionless units as used in the simulation. All plots and results given are in natural units where the tilde is dropped for notational clarity.  \label{tab:natunits}}
-\begin{tabular}{l}
-Natural Units:                                     \\ \hline
-$\tilde{T} =  \frac{k_B}{J} T$                     \\
-$\tilde{c} = \frac{1}{k_B} c$                   \\
-\end{tabular}
-\end{table}
-
-The system was initialized with all spins aligned with value $1$.
-\\
-\\
-We want to eliminate edge effects therefore we use periodic boundary conditions. We calculate the observables by sampling our system $n$ times and replacing the ensemble average with time averages. To calculate the errors for these observables bootstrapping is used. Bootstrapping re-samples with replacement from the $n$ samples took from the system and the observables are calculated for each of those steps. This process repeated $N_{\mathrm{bootstrap}}$ times and using the $N_{\mathrm{bootstrap}}$ values found for the observables the error $\sigma_O$ for an observables $O$ calculated using
-
-\begin{align*}
-\sigma_O = \sqrt{\langle O ^2 \rangle - \langle O \rangle ^2}
-\end{align*}.
-
-
-
-\subsection{Convolutional Neural Network setup}
-
-
-In order to prepare the data for the CNN we use the Monte Carlo simulation used for determining the observables. We let the system equilibrate and then save the array with the value of each of the spins as a vector with length $L \times L$ and in a separate list the temperatures at which those lattices were generated. This was done at a range of temperatures from $T = 0.1$ to $T = 4.5$ with $\Delta T = 0.001$ to generate a set of 4400 labelled lattices around the critical temperature. These lattices had $80 \times 80$ spins. These lattices were fed to the CNN to train it.  
-\\
-\\
-The CNN was trained to classify the lattices into a set of temperature classes. These classes are defined using the inverse temperature $\beta$ around the critical temperature. We choose a range of classes from $\beta = 0.22$ to $\beta = 1$ and we define 100 classes in this range.
-\\
-\\
-The CNN used to classify the lattices had a single convolutional layer with a kernel size of 25 and a stride of 13 with the linear rectifier defined by
-
-\begin{align}
-f(x) = \mathrm{max}(0,x)
-\end{align}
-
-as the activation function. The result of this layer is than fed into a single fully connected layer with the 100 classes defined above with the softmax function defined by
-
-\begin{align}
-\sigma(\vec{z}) = \frac{e^{z_i}}{\sum_{j=1}^K e^{z_j}}
-\end{align}
-
-as the activation function. Where $i$ denotes the class it is calculated for so it has the effect of a normalized exponential function. 
-
-\subsection{Validity Checks}
-
-In order to validate the simulation we look at the magnetisation. For $J$ positive we expect ferromagnetic behaviour where the magnetisation at low temperature goes to $\pm 1$ and at high temperature goes to zero. In figures \ref{fig:magval} \& \ref{fig:lattices} we can see that the simulation satisfies this validity check.
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.7\textwidth]{magval}
-\caption{Magnetisation vs. dimensionless temperature with for a system with $32 \times 32$ spins and $J > 0$. Parameters as in table \ref{tab:params}. At low temperatures the magnetisation goes to 1, at high temperatures the magnetisation goes to zero satisfying the validity check. \label{fig:magval}}
-\end{figure}
+with $\beta = 1/k_B T$ with $k_B$ the Boltzmann constant and $T$ the temperature. $\Delta H$ is the energy change due to this flip. After taking a number of spins the system equilibrates to a final configuration. At low temperatures the chance of flipping a spin become very small so the system goes to either all spins at $-1$ or $1$. When the temperature increases the chance of flipping a spin becomes higher so at high temperatures the final configuration is a random configuration with magnetisation\footnote{The magnetisation is defined as the total sum over all spins} going to zero. At a finite temperature the system crosses over from the low to the high temperature limit. The temperature at which this phase transition occurs is called the critical temperature $T_C$. Analytically the critical temperature is found to be $k_B T_C / J = \frac{2}{\ln(1 + \sqrt{2})} \simeq 2.2691 \dots $\footnote{The derivation of the analytical critical temperature is beyond the scope of this report, see for example Onsager 1944 \cite{onsager}.}.
 
 \begin{figure}[H] 
 \begin{subfigure}[b]{0.33\textwidth}
 \begin{figure}[H]
-\includegraphics[width=\textwidth]{lattice128a}
-\caption{$T = 0.1$.}
+\includegraphics[width=\textwidth]{lattice1}
+\caption{$k_B T_C / J = 0.45$.}
 \end{figure}
 \end{subfigure}
 \begin{subfigure}[b]{0.33\textwidth}
 \begin{figure}[H]
-\includegraphics[width=\textwidth]{lattice128b}
-\caption{$T = 2.2$.}
+\includegraphics[width=\textwidth]{lattice2}
+\caption{$k_B T_C / J = 2.1$.}
 \end{figure}
 \end{subfigure}
 \begin{subfigure}[b]{0.33\textwidth}
 \begin{figure}[H] 
-\includegraphics[width=\textwidth]{lattice128c}
-\caption{$T = 4.5$.}
+\includegraphics[width=\textwidth]{lattice3}
+\caption{$k_B T_C / J = 4.0$.}
 \end{figure}
 \end{subfigure}
-\caption{Ising configurations at three temperatures below, around and above the critical temperature respectively. System size of $128 \times 128$ spins. Below the critical temperature all the spins are aligned, above the critical temperature the spins are random which results in zero net spin. }
+\caption{2D Ising configurations at three temperatures below, around and above the critical temperature respectively. System size of $64 \times 64$ spins. Below the critical temperature all the spins are aligned, above the critical temperature the spins are random which results in zero net spin. }
 \label{fig:lattices}
 \end{figure}
 
-In order to verify whether the CNN manages to represent the phase transition we look at the weight matrix of the final, fully-connected, layer. In figure \ref{fig:weightscnn} we can see that there is indeed some phase transition in this weight matrix. 
+This process is not reversible so it is not a method to study the reverse process, that is, to determine the critical temperature given a labelled\footnote{The labels are the temperatures at which these configurations are generated.} set of final configuration.
+\\
+\\
+One of the methods to study the 2D Ising model analytically is by using Renormalization Group (RG) methods. RG methods look at how the model changes when we look at the model at different length scales.
 
-\begin{figure}[H]
+\begin{figure}[H] 
 \centering
-\includegraphics[width=0.7\textwidth]{weights}
-\caption{Heat plot of the weight matrix of the final fully connected layer of the network, around the critical inverse temperature a phase transition can be seen. \label{fig:weightscnn}}
+\includegraphics[width=0.7\textwidth]{RG}
+\caption{Example of a transformation used in Renormalization Group theory applied to the 2d square lattice Ising model. The technical details not relevant. The RG transformation resembles the effect a convolutional filter has on an image. Source: \cite{RG} }
+\label{fig:RG}
 \end{figure}
 
-\subsection{Implementation}
+There are parallels between RG methods and the convolutional filters used in convolutional neural networks (CNN). Therefore it might be possible to get insights in the phase transition by applying a CNN to the labelled set. 
+\\
+\\
+In order to make to notation more clear we define a reduced temperature defined by $\hat{T} = k_B T_C / J$ and will from now on drop the hat and use $T$ as the reduced temperature. Likewise we use from now on $\beta$ to mean the inverse reduced temperature.
 
-The main simulation was implemented in Visual C\# 6.0. The plots were made in Python 3.6.3 using MatPlotLib 2.1.0. The CNN was implemented using Keras 2.2.4 using the TensorFlow 1.13.1 backend in Python 3.6.3.
+\section{Methods}
 
-
-\section{Results} \label{sec:results}
-
-\subsection{Observables}
-
-For the results the algorithm as described in section \ref{sec:theo} and section \ref{sec:meth} was performed, the system was sampled and the observables were calculated using the parameters given in table \ref{tab:params}. 
-
+In order to train the CNN we first need to generate the dataset. In order to generate this dataset a program was written that uses the Metropolis algorithm to generate final configurations of lattice size $L$ within a range of temperatures. For the dataset used the parameters were
 
 \begin{table}[H]
 \centering
+\caption{Parameters used to generate the dataset using MCMC. \label{tab:params}}
 \begin{tabular}{l|l}
 Parameter: & Value:                                           \\ \hline
-$n$ & $10000$       \\
-$N_\mathrm{bootstrap}$          & $10$                                   \\
-$\Delta T$          & $0.1$         \\                                   
+$T_\mathrm{min}$ & 0.1                       \\
+$T_\mathrm{max}$ & 4.5  \\
+$\Delta T$        & $1 \times 10^{-3}$ \\                           
+$L$        & 100                           \\
 \end{tabular}
-\caption{Parameters used in the simulations runs used to generate the plots. \label{tab:params}}
-\end{table}
+\end{table} 
 
-The simulations were run with $J > 0$ so we expect ferromagnetic behaviour above and below the critical temperature. For the magnetisation per spin we expect it to go to $\pm 1$ at low temperatures and to 0 for high temperatures. In figure \ref{fig:mag128} we see that the simulation behaves as expected. 
+This generated 4400 test configurations. In order to verify that this dataset has a phase transition within this temperature range we can plot the sum over all spins for each point in the temperature range (figure \ref{fig:mags}).
 
-\begin{figure}[H]
+\begin{figure}[H] 
 \centering
-\includegraphics[width=0.7\textwidth]{mag128}
-\caption{Magnetisation per spin vs. dimensionless temperature with for a system with $128 \times 128$ spins and $J > 0$.Parameters as in table \ref{tab:params}. Errors calculated using the bootstrap method. \label{fig:mag128}}
+\includegraphics[width=0.7\textwidth]{mag}
+\caption{The average magnetisation per spin for the generated data points generated using the parameters as given in table \ref{tab:params}. One can see there is a clear transition happening around the analytical value of $T_C$. \label{fig:mags}}
 \end{figure}
 
-For the specific heat per spin we expect a discontinuity at the phase transition in the thermodynamic limit. For a finite size system we expect a peak at the critical temperature that becomes sharper the bigger the system becomes. In figure \ref{fig:cv128} we see that a system of $128 \times 128$ spins has sharp peak at the critical temperature. In figure \ref{fig:cv} we see that for smaller systems the peak becomes less sharp and more spread.
+We want to train a Neural Network to classify these configurations in temperature classes. Therefore we define a discretized temperature, for convenience we choose to use the inverse temperature $\beta$ to define our classes. The minimal inverse temperature is $\beta_\mathrm{min} = 1/T_\mathrm{max} = 1/4.5 = 0.22$ and we choose our maximum at $\beta_\mathrm{max} = 1$. We discretize this range of inverse temperatures in 100 classes. The final fully connected layer of the network uses these classes.
+\\
+\\
+Before feeding our data to the fully connected layer we apply a Convolutional layer with the parameters given in table \ref{tab:CNNparam}. Before feeding the data from the convolutional layer to the fully connected layer we use a dropout layer of $0.5$ to reduce over fitting.
 
-\begin{figure}[H]
+\begin{table}[H]
 \centering
-\includegraphics[width=0.7\textwidth]{cv128}
-\caption{Specific heat per spin vs. dimensionless temperature with for a system with $128 \times 128$ spins and $J > 0$. Parameters as in table \ref{tab:params}. Errors calculated using the bootstrap method. \label{fig:cv128}}
+\caption{Parameters used for the Convolutional layer. \label{tab:CNNparam}}
+\begin{tabular}{l|l}
+Parameter: & Value:                                           \\ \hline
+Kernel size & 25                     \\
+Stride & 13  \\
+Activation function        & Rectified Linear Unit (ReLU) \\                           
+\# channels        & 3                           \\
+\end{tabular}
+\end{table} 
+
+
+When we apply this network to the generated dataset by updating the weights once each epoch we find that it correctly classifies 25\% of the data points after 300 epochs. When we study the weight matrix of the last layer (see figure \ref{fig:weights}) we can see a transition in the weight matrix between two phases. 
+
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\textwidth]{weights}
+\caption{The weight matrix for the final fully connected layer after 300 epochs. The x axis corresponds with the final classes. Around the 25th class there is a phase transistion from dark to random noise. This 25th class coresponds to $\beta = \pm 0.45$ \label{fig:weights}}
 \end{figure}
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.7\textwidth]{cv}
-\caption{Susceptibility per spin vs. dimensionless temperature with for a system with $128 \times 128$ spins and $J > 0$. Parameters as in table \ref{tab:params}. Errors calculated using the bootstrap method. \label{fig:cv}}
-\end{figure}
-
-We expect the susceptibility per spin to go to zero far above and below the critical temperature and to have a peak at the phase transition in the thermodynamic limit. In figure \ref{fig:chi128} we see the susceptibility per spin for a system with $128 \times 128$ spins and see that it has a peak at the critical temperature. In figure \ref{fig:chi} we see that this peak becomes broader for smaller system sizes. 
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.7\textwidth]{chi128}
-\caption{Susceptibility per spin vs. dimensionless temperature with for a system with $128 \times 128$ spins and $J > 0$. Parameters as in table \ref{tab:params}. Errors calculated using the bootstrap method. \label{fig:chi128}}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.7\textwidth]{chi}
-\caption{Susceptibility per spin vs. dimensionless temperature with for a system with $128 \times 128$ spins and $J > 0$. Parameters as in table \ref{tab:params}. Errors calculated using the bootstrap method. \label{fig:chi}}
-\end{figure}
-
-\subsection{Critical temperature using CNN}
-
-In order to determine the temperature at which the phase transition in the weights (figure \ref{fig:weightscnn}) of the CNN occurs  we look at the sum of all the weights for each class (see figure \ref{fig:fit}). In order to quantify the temperature of the transition we fit a function to the data points. Inspired by Tanaka \& Tomiya 2017 \cite{phasemethod} we use the function
+In order to verify whether the temperature of this phase transition agrees with the analytical result we need to quantify the transition position. To do this we sum the weights for each class. So when we look at figure \ref{fig:weights} we sum over each value on the y axis for each class on the x axis. This applied to the weights in figure \ref{fig:weights} is plotted in figure \ref{fig:fit}. In order to find a value for $T_C$ we need to find where the transition occurs. In order to do that we fit a function to the points. Inspired by Tanaka \& Tomiya (2017) \cite{phasemethod} we fit to
 
 \begin{align*}
-W(x) = a \tanh(c(x - \beta_C)) - b
+W(\beta) = a \tanh(c(x - \beta_C)) - b
 \end{align*}
 
-with $a,b,c,\beta_C$ the fitting parameters where $\beta_C$ corresponds with the inverse critical temperature. The fit in figure \ref{fig:fit} gives a value of $\beta_C = 0.449(9)$ which results in $T_C = 2.23(5)$ which agrees with the analytical result. The error in this expectation value was calculated from the covariance matrix of the fit, no error was calculated for the weights in the network.
+and find $\beta_C = 0.449(9)$ which gives a critical temperature of $T_C = 2.23(5)$ which agrees with the analytical value of $T_C = 2.2691 \dots$. The neural network which managed to correctly find the critical temperature only managed to correctly classify the temperature with an accuracy of 25\%.
 
-\begin{figure}[H]
+\begin{figure}[H] 
 \centering
 \includegraphics[width=0.7\textwidth]{fit}
-\caption{Sum of the weights for each of the classes with the fitted $\tanh$ function. The critical inverse temperature for this fit has a vlaue of $\beta_C = 0.449(9)$. \label{fig:fit}}
+\caption{The sums of the weights after 300 epochs for each class of the inverse temperature for the weights in figure \ref{fig:weights} with a fitted $\tanh$ function to find the critical inverse temperature at $\beta_C = 0.449(9)$. \label{fig:fit}}
 \end{figure}
 
-This result was acquired after running the CNN for 300 epochs. After these 300 epochs the CNN manages to correctly classify the temperature for 25\% of the data. This low accuracy could be explained by the overlap of states with the same energy at different temperatures. This accuracy does increase somewhat when the model is run for more epochs but then the phase transition becomes less clear in the weight matrix of the fully connected layer (figure \ref{fig:weightswrong}). This could be the result of over fitting due to the relatively small dataset. When we take the sum of the weights for each of the classes for this weight matrix (figure \ref{fig:fitwrong}) we see that the phase transition has become less well defined. 
+The model that manages to correctly determine the critical temperature only correctly classifies with an accuracy of 25\%. This accuracy was achieved after 300 epochs. When we train the network for more epochs the accuracy increases but the phase transition in the weight matrix of the last layer becomes less defined and therefore it becomes more difficult to determine the critical temperature. In figure \ref{fig:fitwrong} we can see the summed weights after 1000 epochs were we can see that the phase transition becomes less well defined and the fitted function does not manage to properly fit the data. The accuracy after 1000 epochs does increase to 37\%.
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.7\textwidth]{weightswrong}
-\caption{The weight matrix of the final fully connected layer after 1000 epochs. The phase transistion has become less defined compared the weight matrix after 300 epochs from figure \ref{fig:weightscnn}. \label{fig:weightswrong}}
-\end{figure}
-
-\begin{figure}[H]
+\begin{figure}[H] 
 \centering
 \includegraphics[width=0.7\textwidth]{fitwrong}
-\caption{Sum of the weights for each of the classes with the fitted $\tanh$ function for the weight matrix after 1000 epochs. The phase tranistion has become less defined than for the weight matrix after 300 epochs in figure \ref{fig:fit}. The fit fails to properly fit the data. \label{fig:fitwrong}}
+\caption{The sums of the weights after 1000 epochs for each class of the inverse temperature for the weights in figure \ref{fig:weightswrong} with a fitted $\tanh$ function where we can see that the fit does not fit the data properly. \label{fig:fitwrong}}
 \end{figure}
 
-The fitted $\tanh$ function does not properly fit this data and therefore the prediction is makes for the critical temperature does not represent the actual critical temperature. This fit parameter could however be used to observe how the network evolves after a number of epochs. In figure \ref{fig:epochs} we see the value of $\beta_C$ vs. the number of epochs. After about 500 epochs the network diverges away from the analytical value of $B_C$ denoted by the black line.
+\begin{figure}[H] 
+\centering
+\includegraphics[width=0.7\textwidth]{weightswrong}
+\caption{The weight matrix for the final fully connected layer after 1000 epochs. The x axis corresponds with the final classes. The transistion that was visible in figure \ref{fig:weights} after 300 epochs has become less clear.  \label{fig:weightswrong}}
+\end{figure}
 
+When we calculate the estimate for the inverse critical temperature every 10 epochs (figure \ref{fig:epochs}) we see that it slowly increases towards the analytical value (indicated by the black line) until after about 500 epochs the phase transition becomes less clear and the estimate for the inverse critical temperature goes to zero. This might be due to over fitting, this might be reduced by adding extra convolutional layers to the model.
 
-\begin{figure}[H]
+\begin{figure}[H] 
 \centering
 \includegraphics[width=0.7\textwidth]{epochs}
-\caption{The best estimate for the inverse critical temperature vs. the number of epochs the network has run for. The black line denotes the analytical value of the critical temperature. After about 500 epochs the system suffers from overfitting and diverges away from the analytical value. \label{fig:epochs}}
+\caption{The estimate for the critical inverse temperature vs. the number of epochs. After around 500 epochs the phase transistion in the weights becomes less clear and therefore the estimate of the critical temperature deviates further from the analytical result represented by the black line. \label{fig:epochs}}
 \end{figure}
 
 \section{Conclusion}
 
-
-We used the metropolis algorithm to simulate the ferromagnetic zero field 2D square lattice Ising model and found that the behaviour of the magnetization per spin agrees with the expectation for a ferromagnetic system. It tends to $\pm 1$ for low temperatures and goes to 0 at higher temperatures with a clear phase transition at a finite temperature. For a system with a phase transition we expect the specific heat to have a peak at the critical temperature that becomes sharper as we tend towards the thermodynamic limit which is what we found. For a ferromagnetic system we expect the susceptibility to go to zero above and below the critical temperature with a peak at the critical temperature that becomes sharper as we approach the thermodynamic limit which is what we found. These results also agree with the results found in literature \cite{thijssen}.
+We used a simple CNN to find the critical temperature of the zero field Ising model to be $T_C = 2.23(5)$ which agrees with the analytical result of $T_C = \frac{2}{\ln(1 + \sqrt{2})} \simeq 2.2691 \dots$. The only information needed to find this critical temperature was the temperature of equilibrium configurations at a range of temperatures. This method therefore is able to find the critical temperature of a theoretical model without information regarding the phase transition.
 \\
 \\
-Using a convolutional network we found a value for the critical temperature of $k_B T_C / J = 2.23(5)$ which agrees with the analytical result of $k_B T_C / J = \frac{2}{\ln(1 + \sqrt{2})} \simeq 2.2691 \dots $. The network used for the determination of the critical temperature classifies the temperature with an accuracy of 25\%. Running the network for more epochs produces a higher accuracy but reduces the definition of the phase transition in the weight matrix of the final layer. This might be due to over fitting, in order to evaluate whether this is the case a bigger dataset would need to be generated and the network run again. This might produce a value of $T_C$ with a smaller uncertainty.
+For the zero field Ising model a very simple network consisting of only one convolutional layer and one fully connected layer was able to perform this correct determination of the critical temperature. An extension could be to repeat this analysis for the non zero field Ising model and construct the phase diagram for this model.
+\\
+\\
+Using more complex networks it might be possible to extend this method to more complex models like the Potts model or to models of active systems like the Vicsek model.
 
 \begin{thebibliography}{99}
-
-\bibitem{thijssen} 
-J.M. Thijssen (2013), \textit{Computational Physics}, Cambridge University Press, Cambridge, UK.
 
 \bibitem{onsager}
 L. Onsager (1944), \textit{"Crystal statistics. I. A two-dimensional model with an order-disorder transition"}, Physical Review, Series II, 65 (3–4): 117–149.
 
-\bibitem{deep}
-J. Patterson \& A. Gibson (2017), \textit{Deep Learning: A Practitioner's Approach}, O'Reilly Media, Sebastopol (CA.), USA.
-
-\bibitem{IsingRBM}
-G. Torial \& R.G. Meiko (2016), \textit{Learning thermodynamics with Boltzmann machines}, Phys. Rev. B 94, 165134.
-
-
+\bibitem{RG}
+D. Johnson, Phase Transitions, Finite-size Scaling and Renormalization Group, \url{http://schleife.web.engr.illinois.edu/teaching/mse485/lnotes/scaling.html}, retrieved on 2019-04-18.
 
 \bibitem{phasemethod}
 A. Tanaka \& A. Tomiya (2017), \textit{Detection of Phase Transition via Convolutional Neural Networks}, Journal of the Physical Society of Japan 86, 063001.
-
-
 \end{thebibliography}
 
 \end{document}
