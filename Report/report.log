@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (MiKTeX 20.11) (preloaded format=xelatex 2020.12.14)  31 JAN 2022 00:13
+This is XeTeX, Version 3.14159265-2.6-0.999992 (MiKTeX 20.11) (preloaded format=xelatex 2020.12.14)  31 JAN 2022 00:29
 entering extended mode
 **./report.tex
 (report.tex
@@ -733,164 +733,89 @@ LaTeX Info: Redefining \nameref on input line 22.
 \@outlinefile=\write4
 \openout4 = `report.out'.
 
+LaTeX Font Info:    Trying to load font information for U+msa on input line 32.
 
-
-Package hyperref Warning: Rerun to get /PageLabels entry.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 29--36
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 29--36
-
- []
-
-File: AccCNN1.pdf Graphic file (type pdf)
-<use AccCNN1.pdf>
-File: AccCNN128.pdf Graphic file (type pdf)
-<use AccCNN128.pdf>
-File: AccCNN1024.pdf Graphic file (type pdf)
-<use AccCNN1024.pdf>
-LaTeX Font Info:    Trying to load font information for U+msa on input line 68.
 
 (C:\Users\tkore\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 68.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 32.
 
 
 (C:\Users\tkore\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Underfull \hbox (badness 10000) in paragraph at lines 68--69
-[]\TU/lmr/m/n/10 Towards Datascience: Build your own convolutional neural net-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 68--69
-\TU/lmr/m/n/10 work in 5 minutes, Rohith Gandi, []$[][][][][] [] [] [] [][][][]
-[][][][][][][][][][][][][][] [] [][][] []
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 68--69
-[][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][
-][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][][]$[]\TU/lmr/m
-/n/10 , retrieved on 2019-04-
- []
-
-
 (C:\Users\tkore\AppData\Local\Programs\MiKTeX\tex/generic/stringenc\se-ascii-pr
 int.def
 File: se-ascii-print.def 2019/11/29 v1.12 stringenc: Printable ASCII characters
 
-) [1
-
-]
-Underfull \hbox (badness 10000) in paragraph at lines 81--85
-
- []
-
-File: AutoEn.pdf Graphic file (type pdf)
-<use AutoEn.pdf>
-
-Underfull \hbox (badness 10000) in paragraph at lines 98--99
-[]\TU/lmr/m/n/10 The Keras Blog: Building Autoencoders in Keras, []$[][][][][] 
-[] [] [] [][][][] [] [][][][][] [] [][] []
- []
-
-[2]
-Underfull \hbox (badness 10000) in paragraph at lines 111--115
-
- []
-
-File: AccuracyRNN.pdf Graphic file (type pdf)
-<use AccuracyRNN.pdf>
-
-Underfull \hbox (badness 10000) in paragraph at lines 129--130
-[]\TU/lmr/m/n/10 Machine Learning Mastery: Learn to Add Numbers with an Encoder
--
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 129--130
-\TU/lmr/m/n/10 Decoder LSTM Recurrent Neural Network, []$[][][][][] [] [] [] []
-[][][][][][][][][][][][][][][][][][][][][] [] [][][] []
- []
-
-[3]
+)
 File: lattice1.pdf Graphic file (type pdf)
 <use lattice1.pdf>
 File: lattice2.pdf Graphic file (type pdf)
 <use lattice2.pdf>
 File: lattice3.pdf Graphic file (type pdf)
 <use lattice3.pdf>
+ [1
 
-Overfull \vbox (1.12172pt too high) has occurred while \output is active []
-
-
-[4]
-Underfull \hbox (badness 10000) in paragraph at lines 194--198
+]
+Underfull \hbox (badness 10000) in paragraph at lines 84--88
 
  []
 
 File: RG.jpg Graphic file (type bmp)
 <RG.jpg>
 
-Underfull \hbox (badness 10000) in paragraph at lines 206--210
+Underfull \hbox (badness 10000) in paragraph at lines 96--100
 
  []
 
-[5]
+[2]
 File: mag.pdf Graphic file (type pdf)
 <use mag.pdf>
 
-Underfull \hbox (badness 10000) in paragraph at lines 235--239
+Underfull \hbox (badness 10000) in paragraph at lines 125--129
 
  []
 
 File: weights.pdf Graphic file (type pdf)
 <use weights.pdf>
-[6]
+[3]
 File: fit.pdf Graphic file (type pdf)
 <use fit.pdf>
- [7]
+ [4]
 File: fitwrong.pdf Graphic file (type pdf)
 <use fitwrong.pdf>
 File: weightswrong.pdf Graphic file (type pdf)
 <use weightswrong.pdf>
- [8]
+ [5]
 File: epochs.pdf Graphic file (type pdf)
 <use epochs.pdf>
 
-Underfull \hbox (badness 10000) in paragraph at lines 299--306
+Underfull \hbox (badness 10000) in paragraph at lines 189--196
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 299--306
+Underfull \hbox (badness 10000) in paragraph at lines 189--196
 
  []
 
-[9] (report.aux)
+[6] (report.aux)
+Package rerunfilecheck Info: File `report.out' has not changed.
+(rerunfilecheck)             Checksum: F87204E416B5CD18FEEE15EB6825F569;194.
 
-Package rerunfilecheck Warning: File `report.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
 
-Package rerunfilecheck Info: Checksums for `report.out':
-(rerunfilecheck)             Before: 755F07850244729B5078A3D2E16A9DAC;195
-(rerunfilecheck)             After:  F87204E416B5CD18FEEE15EB6825F569;194.
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
  ) 
 Here is how much of TeX's memory you used:
- 21513 strings out of 412197
- 388420 string characters out of 2849632
- 685341 words of memory out of 3000000
- 40676 multiletter control sequences out of 15000+200000
- 541896 words of font info for 69 fonts, out of 3000000 for 9000
+ 21478 strings out of 412197
+ 387804 string characters out of 2849632
+ 685343 words of memory out of 3000000
+ 40643 multiletter control sequences out of 15000+200000
+ 541888 words of font info for 68 fonts, out of 3000000 for 9000
  1348 hyphenation exceptions out of 8191
- 99i,10n,109p,1076b,761s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 99i,10n,109p,1076b,769s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on report.pdf (9 pages).
+Output written on report.pdf (6 pages).
