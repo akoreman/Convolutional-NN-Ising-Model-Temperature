@@ -5,3 +5,8 @@ can approximate the critical temperature for the phase transition in the Ising m
 
 Written in Python, data wrangling done using the SciPy ecosystem. CNN implemented using Keras. The Ising spin models are generated using a program written in C#
 (see: ADD LINK TO GITHUB). See the report in the root for more details.
+
+# Screenshots:
+
+**Visualisation of the transition in the weight matrix of the CNN**
+<img src="https://raw.github.com/akoreman/Convolutional-NN-Ising-Model-Temperature/main/images/WeightMatrix.jpg" width="400">  
